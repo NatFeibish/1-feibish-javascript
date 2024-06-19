@@ -48,7 +48,6 @@ const quotes = [
 
 ];
 
-console.log(quotes[4]);
 
 /***
  * `getRandomQuote` function
@@ -62,14 +61,12 @@ function getRandomQuote() {
   // 2. Use the random number variable and bracket notation 
   // to grab a random object from the `quotes` array, and 
   // store it in a variable
-
   const quoteSelected = quotes[quoteSelector];
 
   // 3. Return the variable storing the random quote object
   return quoteSelected;
 }
 
-console.log(getRandomQuote());
 
 /***
  * `printQuote` function
@@ -80,22 +77,20 @@ function printQuote() {
   // function
 
   const quoteToPrint = getRandomQuote();
-
   // 2. Create a variable that initiates your HTML string with 
   // the first two <p></p> elements, their classNames, 
   // and the quote and source properties, but leave off 
   // the second closing `</p>` tag for now
-  let quoteHTML = `<p class="quote">${quoteToPrint.quote}</p>
-<p class="source">${quoteToPrint.source}`;
+  let quoteHTML = `<p class="quote">${quoteToPrint.quote}</p> <p class="source">${quoteToPrint.source}`;
 
   // 3. Use an if statement to check if the citation property 
   // exists, and if it does, concatenate a <span></span> 
   // element, appropriate className, and citation property 
   // to the HTML string
 
-  if(quoteToPrint.citation){
-    quoteHTML = quoteHTML + `<span class="citation">, ${quoteToPrint.citation} </span>`;
-  };
+  if(quoteToPrint.citation){ 
+    quoteHTML = quoteHTML + `<span class="citation"> ${quoteToPrint.citation}</span>`;
+  }
 
   // 4. Use an if statement to check of the year property exists, 
   // and if it does, concatenate a <span></span> element, 
@@ -103,8 +98,14 @@ function printQuote() {
   //string
 
   if(quoteToPrint.year){
-    quoteHTML = quoteHTML + `<span class="year">, ${quoteToPrint.year} </span>`;
-  };
+    quoteHTML = quoteHTML + `<span class="year">${quoteToPrint.year}</span>`;
+  }
+
+  // Extra Credit Task 1
+
+  if(quoteToPrint.tags){
+    quoteHTML = quoteHTML + `<span class="tags"> <br>(${quoteToPrint.tags})</span>`;
+  }
 
   // 5. After the two if statements, concatenate the closing </p> 
   // tag to the HTML string
@@ -112,9 +113,40 @@ function printQuote() {
 
   // 6. set the innerHTML of the quote-box div to equal the 
   // complete HTML string
-  const quoteBox = document.getElementById('quote-box');
-  quoteBox.innerHTML = quoteHTML;
+  document.getElementById('quote-box').innerHTML = quoteHTML;
 }
+
+//Extra Credit Task 2: Random Background Colors
+//EC2-1:  Create an array of possible characters for one slot in the hex value
+  const bgArray = ["F","E","D","C","B","A","1","2","3","4","5","6","7","8","9","0"];
+
+//EC2-2:  Create a blank variable to hold the hex value with the '#' sign
+  let bgHex = "#";
+
+//EC2-3:  Create a function using declaration (so it hoists) with a loop that runs 6 times to select 
+//        one of the possible characters randomly from the array, 
+//        then concatenate the value to the end of the hex
+function buildHex() {
+  for (i=0; i < 6; i++){
+    let bgSelector = Math.floor(Math.random() * bgArray.length);
+    let bgSelected = bgArray[bgSelector];
+    bgHex = bgHex + bgSelected;
+  };
+  return bgHex;
+}
+
+console.log(buildHex());
+console.log(bgHex);
+
+// bgHex = bgHex + builtHex;
+
+// console.log(bgSelected);
+// console.log(bgArray);
+// console.log(bgHex);
+
+//EC2-4:  Apply the hex as the background color of the body element
+//EC2-5:  Incorporate this into printQuote function
+
 
 /***
  * click event listener for the print quote button
