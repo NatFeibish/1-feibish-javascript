@@ -48,6 +48,8 @@ const quotes = [
 
 ];
 
+console.log(quotes[4]);
+
 /***
  * `getRandomQuote` function
 ***/
@@ -55,13 +57,19 @@ const quotes = [
 function getRandomQuote() {
   // 1. Create a variable that generates a random number
   // between zero and the last index in the `quotes` array
+  const quoteSelector = Math.floor(Math.random() * quotes.length);
 
   // 2. Use the random number variable and bracket notation 
   // to grab a random object from the `quotes` array, and 
   // store it in a variable
 
+  const quoteSelected = quotes[quoteSelector];
+
   // 3. Return the variable storing the random quote object
+  return quoteSelected;
 }
+
+console.log(getRandomQuote());
 
 /***
  * `printQuote` function
@@ -71,26 +79,41 @@ function printQuote() {
   // 1. Create a variable that calls the getRandomQuote() 
   // function
 
+  const quoteToPrint = getRandomQuote();
+
   // 2. Create a variable that initiates your HTML string with 
   // the first two <p></p> elements, their classNames, 
   // and the quote and source properties, but leave off 
   // the second closing `</p>` tag for now
+  let quoteHTML = `<p class="quote">${quoteToPrint.quote}</p>
+<p class="source">${quoteToPrint.source}`;
 
   // 3. Use an if statement to check if the citation property 
   // exists, and if it does, concatenate a <span></span> 
   // element, appropriate className, and citation property 
   // to the HTML string
 
+  if(quoteToPrint.citation){
+    quoteHTML = quoteHTML + `<span class="citation">, ${quoteToPrint.citation} </span>`;
+  };
+
   // 4. Use an if statement to check of the year property exists, 
   // and if it does, concatenate a <span></span> element, 
   // appropriate className, and year property to the HTML 
   //string
 
+  if(quoteToPrint.year){
+    quoteHTML = quoteHTML + `<span class="year">, ${quoteToPrint.year} </span>`;
+  };
+
   // 5. After the two if statements, concatenate the closing </p> 
   // tag to the HTML string
+  quoteHTML = quoteHTML + "</p>";
 
   // 6. set the innerHTML of the quote-box div to equal the 
   // complete HTML string
+  const quoteBox = document.getElementById('quote-box');
+  quoteBox.innerHTML = quoteHTML;
 }
 
 /***
