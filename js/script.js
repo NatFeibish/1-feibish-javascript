@@ -1,11 +1,14 @@
 /******************************************
 Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
+Natalie Feibish - June 19, 2024
 ******************************************/
 
 // For assistance: 
   // Check the "Project Resources" section of the project instructions
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
+
+
 
 /*** 
  * `quotes` array 
@@ -101,11 +104,16 @@ function printQuote() {
     quoteHTML = quoteHTML + `<span class="year">${quoteToPrint.year}</span>`;
   }
 
-  // Extra Credit Task 1
 
-  if(quoteToPrint.tags){
-    quoteHTML = quoteHTML + `<span class="tags"> <br>(${quoteToPrint.tags})</span>`;
-  }
+  /***
+   * Extra Credit Task 1: Add an additional quote object property
+  ***/
+
+    if(quoteToPrint.tags){
+      quoteHTML = quoteHTML + `<span class="tags"> <br>(${quoteToPrint.tags})</span>`;
+    }
+  // **** End Extra Credit Task 1
+
 
   // 5. After the two if statements, concatenate the closing </p> 
   // tag to the HTML string
@@ -115,33 +123,41 @@ function printQuote() {
   // complete HTML string
   document.getElementById('quote-box').innerHTML = quoteHTML;
 
-//Extra Credit Task 2: Random Background Colors
-//EC2-1:  Create an array of possible characters as strings for one slot in the hex value
-  const bgArray = ["F","E","D","C","B","A","1","2","3","4","5","6","7","8","9","0"];
 
-//EC2-2:  Create a blank variable to hold the hex value with the '#' sign
-  let bgHex = "#";
+  /***
+   * Extra Credit Task 2: Random Background Colors
+  ***/
+  //EC2-1:  Create an array of possible characters as strings for one slot in the hex value
+    const bgArray = ["F","E","D","C","B","A","1","2","3","4","5","6","7","8","9","0"];
 
-//EC2-3:  Create a function using declaration (so it hoists) with a loop that runs 6 times to select 
-//        one of the possible characters randomly from the array, 
-//        then concatenate the value to the end of the hex
-function buildHex() {
-  for (i=0; i < 6; i++){
-    let bgSelector = Math.floor(Math.random() * bgArray.length);
-    let bgSelected = bgArray[bgSelector];
-    bgHex = bgHex + bgSelected;
-  };
-  return bgHex;
-}
-document.querySelector('body').style.backgroundColor = buildHex();
-}
+  //EC2-2:  Create a blank variable to hold the hex value with the '#' sign
+    let bgHex = "#";
+
+  //EC2-3:  Create a function with a loop that runs 6 times to select 
+  //        one of the possible characters randomly from the array, 
+  //        then concatenate the value to the end of the hex
+  function buildHex() {
+    for (i=0; i < 6; i++){
+      let bgSelector = Math.floor(Math.random() * bgArray.length);
+      let bgSelected = bgArray[bgSelector];
+      bgHex = bgHex + bgSelected;
+    };
+    return bgHex;
+  }
+
+  //EC2-4:  Use the results of buildHex to set the new background color
+  document.querySelector('body').style.backgroundColor = buildHex();
+
+  // **** End Extra Credit Task 2
+  }
 
 
-
- 
-
-
-
+ /***
+   * Extra Credit Task 3: Auto-Refreshed Quotes 
+  ***/
+  const printInterval = setInterval(printQuote, 10000); 
+  // modified from https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+// **** End Extra Credit Task 3
 
 
 /***
