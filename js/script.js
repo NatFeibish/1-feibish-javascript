@@ -114,10 +114,9 @@ function printQuote() {
   // 6. set the innerHTML of the quote-box div to equal the 
   // complete HTML string
   document.getElementById('quote-box').innerHTML = quoteHTML;
-}
 
 //Extra Credit Task 2: Random Background Colors
-//EC2-1:  Create an array of possible characters for one slot in the hex value
+//EC2-1:  Create an array of possible characters as strings for one slot in the hex value
   const bgArray = ["F","E","D","C","B","A","1","2","3","4","5","6","7","8","9","0"];
 
 //EC2-2:  Create a blank variable to hold the hex value with the '#' sign
@@ -134,18 +133,15 @@ function buildHex() {
   };
   return bgHex;
 }
+document.querySelector('body').style.backgroundColor = buildHex();
+}
 
-console.log(buildHex());
-console.log(bgHex);
 
-// bgHex = bgHex + builtHex;
 
-// console.log(bgSelected);
-// console.log(bgArray);
-// console.log(bgHex);
+ 
 
-//EC2-4:  Apply the hex as the background color of the body element
-//EC2-5:  Incorporate this into printQuote function
+
+
 
 
 /***
